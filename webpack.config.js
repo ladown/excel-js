@@ -42,10 +42,6 @@ module.exports = {
     },
   },
   devtool: isDev ? 'source-map' : false,
-  devServer: {
-    port: 3000,
-    hot: isDev,
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
@@ -57,7 +53,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src/favicon.ico'), to: path.resolve(__dirname, 'dist') },
+        {
+          from: path.resolve(__dirname, 'src/favicon.ico'),
+          to: path.resolve(__dirname, 'dist'),
+        },
       ],
     }),
     new MiniCssExtractPlugin({
@@ -68,17 +67,7 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: isDev,
-              reloadAll: true,
-            },
-          },
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -87,4 +76,10 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    port: 3000,
+    open: true,
+    hot: true,
+  },
+  watch: true,
 };
