@@ -14,6 +14,10 @@ export class Excel {
 
       const component = new Component($el);
 
+      if (component.name) {
+        window['c' + component.name] = component;
+      }
+
       $el.html(component.toHTML());
 
       $root.append($el);
@@ -26,7 +30,6 @@ export class Excel {
 
   render() {
     this.$el.append(this.getRoot());
-    console.log(this.components);
 
     this.components.forEach((comp) => {
       comp.init();
