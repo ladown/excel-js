@@ -5,14 +5,15 @@ const CODES = {
 
 function toCell(_, index) {
   return `
-  <div class="excel__table-cell" contenteditable></div>
+  <div class="excel__table-cell" contenteditable data-col="${index}"></div>
   `;
 }
 
-function toColumn(col) {
+function toColumn(col, index) {
   return `
-  <div class="excel__table-column">
+  <div class="excel__table-column" data-type="resizable" data-col="${index}">
     ${col}
+    <div class="excel__table-column-resize" data-resize='col' ></div>
   </div>
   `;
 }
@@ -22,9 +23,13 @@ function toChar(_, index) {
 }
 
 function createRow(index, content) {
+  const resizer = index ? `<div class="excel__row-resize" data-resize='row'></div>` : '';
   return `
-  <div class='excel__table-row'>
-    <div class='excel__row-info'>${index ? index : ''}</div>
+  <div class='excel__table-row'  data-type="resizable">
+    <div class='excel__row-info'>
+      ${index ? index : ''}
+      ${resizer}
+    </div>
     <div class='excel__row-data'>
       ${content}
     </div>
