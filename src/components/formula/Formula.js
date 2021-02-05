@@ -9,26 +9,36 @@ export class Formula extends ExcelComponent {
     super($root, {
       name: 'Formula',
       listeners: ['input', 'keydown'],
+      subscribe: ['currentText'],
       ...options,
     });
   }
 
   toHTML() {
     return `
-    <div class="excel__formula-info">fx</div>
-    <div id="formula" class="excel__formula-input" contenteditable spellcheck="false"></div>
+    <div class="excel__formula-info">
+      fx
+    </div>
+    <div 
+    id="formula"
+    class="excel__formula-input"
+    contenteditable
+    spellcheck="false"
+    ></div>
     `;
   }
 
   init() {
     super.init();
+
     this.$formula = this.$root.find('#formula');
     this.$on('table:select', ($cell) => {
-      this.$formula.text($cell.text());
+      this.$formula.text($cell.data.value);
     });
-    this.$on('table:input', ($cell) => {
-      this.$formula.text($cell.text());
-    });
+  }
+
+  storeChanged({ currentText }) {
+    this.$formula.text(currentText);
   }
 
   onInput(event) {
@@ -39,7 +49,6 @@ export class Formula extends ExcelComponent {
     const keys = ['Enter', 'Tab'];
     if (keys.includes(event.key)) {
       event.preventDefault();
-
       this.$emit('formula:done');
     }
   }
