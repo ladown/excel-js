@@ -16,6 +16,7 @@ class Dom {
     if (node instanceof Dom) {
       node = node.$el;
     }
+
     if (Element.prototype.append) {
       this.$el.append(node);
     } else {
@@ -72,6 +73,7 @@ class Dom {
   id(parse) {
     if (parse) {
       const parsed = this.id().split(':');
+
       return {
         row: +parsed[0],
         col: +parsed[1],
@@ -87,14 +89,32 @@ class Dom {
   }
 
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$el.textContent = text;
       return this;
     }
+
     if (this.$el.tagName.toLowerCase() === 'input') {
-      this.$el.value.trim();
+      return this.$el.value.trim();
     }
+
     return this.$el.textContent.trim();
+  }
+
+  getStyles(styles = []) {
+    return styles.reduce((res, style) => {
+      res[style] = this.$el.style[style];
+      return res;
+    }, {});
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value);
+      return this;
+    }
+
+    return this.$el.getAttribute(name);
   }
 }
 

@@ -5,6 +5,7 @@ export class DomListener {
     if (!$root) {
       throw new Error(`$root is not provided for DomListener `);
     }
+
     this.$root = $root;
     this.listeners = listeners;
   }
