@@ -1,5 +1,7 @@
 import { ExcelStateComponent } from '../../core/ExcelStateComponent';
+
 import { createToolbar } from './toolbarTemplate';
+
 import { $ } from '../../core/dom';
 import { defaultStyles } from '../../constants';
 

@@ -1,14 +1,16 @@
 import { ExcelComponent } from '../../core/ExcelComponent';
-import { TableSelection } from './TableSelection';
 
-import { createTable } from './tableTemplate';
-import { resizeHandler } from './tableResize';
-import { isCell, matrix, nextSelector, shouldResize } from './tableFunctions';
 import * as actions from '../../redux/actions';
 
 import { $ } from '../../core/dom';
-import { defaultStyles } from '../../constants';
 import { parse } from '../../core/parse';
+
+import { defaultStyles } from '../../constants';
+
+import { TableSelection } from './TableSelection';
+import { isCell, matrix, nextSelector, shouldResize } from './tableFunctions';
+import { createTable } from './tableTemplate';
+import { resizeHandler } from './tableResize';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table';

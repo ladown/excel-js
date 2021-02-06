@@ -1,4 +1,5 @@
 import { defaultStyles } from '../../constants';
+
 import { parse } from '../../core/parse';
 import { toInlineStyles } from '../../core/utiles';
 
