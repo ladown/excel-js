@@ -5,7 +5,9 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "yarn cross-env NODE_ENV=development webpack-dev-server",
-    "build": "yarn cross-env NODE_ENV=production webpack --mode production"
+    "build": "yarn cross-env NODE_ENV=production webpack --mode production",
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
   },
   "repository": "https://github.com/ladown/excel-js.git",
   "author": "Egor Ermilov <egorka33rus52@gmail.com>",
@@ -25,6 +27,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-loader": "^3.0.3",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^26.6.3",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
