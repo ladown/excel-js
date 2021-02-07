@@ -119,7 +119,7 @@ class Dom {
 
   clear() {
     this.html('');
-    this;
+    return this;
   }
 }
 

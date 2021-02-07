@@ -18,7 +18,7 @@ export function createRecordsTable() {
   const keys = getAllKeys();
 
   if (!keys.length) {
-    return `<p>Вы еще не создали ни одной таблицы!</p>`;
+    return `<p class='info'>Вы еще не создали ни одной таблицы!</p>`;
   }
 
   return `
